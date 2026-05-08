@@ -19,6 +19,11 @@ dependencies = [
 
 [project.optional-dependencies]
 anthropic = ["anthropic>=0.40"]
+# The alignment plugin (`safety_eval.evaluators.alignment_plugin`) wraps the
+# external `alignment-behavior-probe` package. It is not auto-installed because
+# it is currently expected to be installed locally (e.g. `pip install -e
+# ../alignment-behavior-probe`). Once it is on PyPI, declare it here:
+#   alignment = ["alignment-behavior-probe>=0.1"]
 dev = [
     "pytest>=7.4",
     "pytest-asyncio>=0.23",
