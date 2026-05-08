@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-safety-eval-harness"
+version = "0.1.0"
+description = "Production-quality evaluation harness for measuring LLM safety, robustness, and refusal rates."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Safety Eval Authors" }]
+dependencies = [
+    "pydantic>=2.5",
+    "typer>=0.12",
+    "matplotlib>=3.7",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.40"]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+safety-eval = "safety_eval.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["safety_eval"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
